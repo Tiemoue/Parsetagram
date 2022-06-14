@@ -52,9 +52,6 @@ public class MainActivity extends AppCompatActivity {
         btnSubmit = findViewById(R.id.btnSubmit);
         btnTakePicture = findViewById(R.id.btnTakePicture);
         ivPicture = findViewById(R.id.ivPicture);
-        
-        
-//
 
         btnTakePicture.setOnClickListener(new View.OnClickListener() {
             @Override

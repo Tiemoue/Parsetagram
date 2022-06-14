@@ -26,11 +26,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        if(ParseUser.getCurrentUser() != null){
-            goToFeedActivity();
-        }
-
-
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
@@ -54,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                     Log.e("issue with log", String.valueOf(e));
                     Toast.makeText(LoginActivity.this, "Invalid Password", Toast.LENGTH_SHORT).show();
                 }else{
-                    goMainActivity();
+                    goToFeedActivity();
                     Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT).show();
                 }
             }
