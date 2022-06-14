@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         ivPicture = findViewById(R.id.ivPicture);
         
         
-//        queryPost();
+//
 
         btnTakePicture.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,12 +74,14 @@ public class MainActivity extends AppCompatActivity {
                 }
                 ParseUser currentUser = ParseUser.getCurrentUser();
                 if(photoFile != null && ivPicture.getDrawable() != null){
-                      savePost(description, currentUser, photoFile);}
+                      savePost(description, currentUser, photoFile);
+
+                }
                 else{
                     Toast.makeText(MainActivity.this, "no image found", Toast.LENGTH_SHORT).show();
                     return;
                 }
-            }
+                }
         });
 
 
@@ -90,6 +92,11 @@ public class MainActivity extends AppCompatActivity {
                 logOut();
             }
         });
+    }
+
+    private void goToFeedActivity() {
+        Intent intent = new Intent(MainActivity.this, FeedActivity.class);
+        startActivity(intent);
     }
 
     private void lauchCamera() {
@@ -121,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
                 // RESIZE BITMAP, see section below
                 // Load the taken image into a preview
                 ivPicture.setImageBitmap(takenImage);
+
             } else { // Result was a failure
                 Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
             }
@@ -159,11 +167,11 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                     etDescription.setText("");
                     ivPicture.setImageResource(0);
-
+                    Toast.makeText(MainActivity.this, "Sent", Toast.LENGTH_SHORT).show();
+                    queryPost();
                 }
-            }
+                goToFeedActivity(); }
         });
-
     }
 
     private void queryPost() {

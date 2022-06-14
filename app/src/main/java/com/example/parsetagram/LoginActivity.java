@@ -21,14 +21,13 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etPassword;
     private Button btnLogin;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         if(ParseUser.getCurrentUser() != null){
-            goMainActivity();
+            goToFeedActivity();
         }
 
 
@@ -45,7 +44,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
 
     private void loginUser(String username, String password) {
 
@@ -68,5 +66,10 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    private void goToFeedActivity() {
+        Intent intent = new Intent(LoginActivity.this, FeedActivity.class);
+        startActivity(intent);
     }
 }
