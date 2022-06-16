@@ -61,6 +61,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         private ImageView ivImage;
         private TextView tvDescription;
         private TextView tvCreatedAt;
+        private TextView tvLikes;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -68,7 +69,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             ivImage = itemView.findViewById(R.id.ivImage);
             tvDescription = itemView.findViewById(R.id.tvDescription);
             tvCreatedAt = itemView.findViewById(R.id.tvCreatedAt);
-
+            tvLikes = itemView.findViewById(R.id.tvLikes);
             itemView.setOnClickListener(this);
         }
 
@@ -86,6 +87,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                 ivImage.setVisibility(View.GONE);
             }
 
+
         }
 
 
@@ -94,9 +96,9 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             int position = getAdapterPosition();
             if (position != RecyclerView.NO_POSITION){
                 Post post = posts.get(position);
-            Intent intent = new Intent(context, DetailActivity.class);
-            intent.putExtra(Post.class.getSimpleName(), posts.get(position));
-            context.startActivity(intent);
+                Intent intent = new Intent(context, DetailActivity.class);
+                intent.putExtra(Post.class.getSimpleName(), posts.get(position));
+                context.startActivity(intent);
             }
 
         }

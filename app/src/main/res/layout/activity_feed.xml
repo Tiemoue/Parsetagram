@@ -9,17 +9,39 @@
     android:background="@color/black"
     tools:context=".FeedActivity">
 
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleTextColor="@android:color/white">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:src="@drawable/nav_logo_whiteout"
+            android:layout_marginLeft="70dp"
+            />
+
+
+    </androidx.appcompat.widget.Toolbar>
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeContainer"
+        android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvPosts"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:padding="8dp" />
+            android:layout_centerInParent="true" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
