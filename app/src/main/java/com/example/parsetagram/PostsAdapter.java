@@ -3,6 +3,7 @@ package com.example.parsetagram;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.RoundedCorner;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.parse.ParseFile;
 
 import java.util.Date;
@@ -64,6 +66,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         private TextView tvCreatedAt;
         private TextView tvLikes;
         private ImageButton feedLikes;
+        private  ImageView profile;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -74,6 +77,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             tvCreatedAt = itemView.findViewById(R.id.tvCreatedAt);
             tvLikes = itemView.findViewById(R.id.tvLikes);
             feedLikes = itemView.findViewById(R.id.feedLike);
+            profile = itemView.findViewById(R.id.profile);
             itemView.setOnClickListener(this);
         }
 
@@ -84,6 +88,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             tvUsername.setText(post.getUser().getUsername());
             tvCreatedAt.setText(timeAgo);
             tvLikes.setText(post.getLikesCount());
+            ParseFile profilePicture = post.getUser().getParseFile("profileimage");
             if (post.isLikedByCurrentUser()){
                 feedLikes.setBackgroundResource(R.drawable.ufi_heart_active);
             }else{
@@ -96,6 +101,12 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             }else{
                 ivImage.setVisibility(View.GONE);
             }
+
+            if(profilePicture != null){
+                Glide.with(context).load(profilePicture.getUrl()).transform(new RoundedCorners(90)).into(profile);
+            }
+
+
         }
 
         @Override
