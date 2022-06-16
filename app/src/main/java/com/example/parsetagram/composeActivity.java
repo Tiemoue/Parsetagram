@@ -28,7 +28,7 @@ import com.parse.SaveCallback;
 import java.io.File;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class composeActivity extends AppCompatActivity {
 
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 20;
 
@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnSubmit;
     Button btnLogOut;
     ImageView ivPicture;
+    Button btnFeed;
     private File photoFile;
     public String photoFileName = "photo.jpg";
 
@@ -52,14 +53,19 @@ public class MainActivity extends AppCompatActivity {
         btnSubmit = findViewById(R.id.btnSubmit);
         btnTakePicture = findViewById(R.id.btnTakePicture);
         ivPicture = findViewById(R.id.ivPicture);
-        
-        
-//
+        btnFeed = findViewById(R.id.btnFeed);
 
         btnTakePicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 lauchCamera();
+            }
+        });
+
+        btnFeed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToFeedActivity();
             }
         });
 
@@ -69,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String description = etDescription.getText().toString();
                 if (description.isEmpty()){
-                    Toast.makeText(MainActivity.this, "Description cannot be empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(composeActivity.this, "Description cannot be empty", Toast.LENGTH_SHORT).show();
                 return;
                 }
                 ParseUser currentUser = ParseUser.getCurrentUser();
@@ -78,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
                 else{
-                    Toast.makeText(MainActivity.this, "no image found", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(composeActivity.this, "no image found", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 }
@@ -95,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void goToFeedActivity() {
-        Intent intent = new Intent(MainActivity.this, FeedActivity.class);
+        Intent intent = new Intent(composeActivity.this, FeedActivity.class);
         startActivity(intent);
     }
 
@@ -107,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         // wrap File object into a content provider
         // required for API >= 24
         // See https://guides.codepath.com/android/Sharing-Content-with-Intents#sharing-files-with-api-24-or-higher
-        Uri fileProvider = FileProvider.getUriForFile(MainActivity.this, "com.codepath.fileprovider", photoFile);
+        Uri fileProvider = FileProvider.getUriForFile(composeActivity.this, "com.codepath.fileprovider", photoFile);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
 
         // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
@@ -162,12 +168,12 @@ public class MainActivity extends AppCompatActivity {
             public void done(ParseException e) {
                 if(e != null) {
                     Log.e(TAG, "error", e);
-                    Toast.makeText(MainActivity.this, "Error while saving", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(composeActivity.this, "Error while saving", Toast.LENGTH_SHORT).show();
 
                 }else{
                     etDescription.setText("");
                     ivPicture.setImageResource(0);
-                    Toast.makeText(MainActivity.this, "Sent", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(composeActivity.this, "Sent", Toast.LENGTH_SHORT).show();
                     queryPost();
                 }
                 goToFeedActivity(); }
@@ -177,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
     private void queryPost() {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         query.include(Post.KEY_USER);
+        query.include(Post.KEY_LIKED_BY);
         query.findInBackground(new FindCallback<Post>() {
             @Override
             public void done(List<Post> posts, ParseException e) {
@@ -199,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
     public void logOut(){
         ParseUser.logOut();
         ParseUser currentUser = ParseUser.getCurrentUser();
-        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        Intent intent = new Intent(composeActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
     }

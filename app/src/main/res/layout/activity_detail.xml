@@ -1,39 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/black"
+    android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/tvDetailUsername"
+        android:textSize="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        tools:text="rahul" />
+        android:textColor="@color/white"
+        android:id="@+id/tvDetailUsername"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:id="@+id/tvDate"/>
+
 
     <ImageView
-        android:id="@+id/ivDetailImage"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:scaleType="centerCrop"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:layout_height="285dp"
+        android:id="@+id/ivDetailImage"/>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageButton
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:id="@+id/ibLikes"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/ufi_heart"
+            android:backgroundTint="@color/white"
+           />
+
+
+
+        <ImageButton
+            android:layout_width="39dp"
+            android:layout_height="39dp"
+            app:layout_constraintLeft_toRightOf="@id/ibLikes"
+            android:id="@+id/ibComment"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ibLikes"
+            android:background="@drawable/ufi_comment"
+            android:backgroundTint="@color/white"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/tvDetailDescription"
+        android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        tools:text="trying to look hipster" />
+        android:id="@+id/tvDetailDescription"/>
 
     <TextView
-        android:id="@+id/tvDetailCreatedAt"
+        android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="10dp"
-        />
+        android:text="0 likes"
+        android:id="@+id/tvlikeCounts"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:id="@+id/rvComments"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </LinearLayout>
+

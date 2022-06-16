@@ -3,43 +3,53 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@color/black"
+    tools:context=".composeActivity">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/flContainer"/>
 
     <Button
         android:id="@+id/btnLogOut"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="67dp"
         android:layout_below="@+id/btnSubmit"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="4dp"
+        android:layout_marginTop="648dp"
+        android:layout_marginEnd="17dp"
         android:layout_marginBottom="16dp"
         android:text="Log Out"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="2dp" />
 
+
     <Button
         android:id="@+id/btnSubmit"
-        android:layout_width="161dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+        android:layout_width="wrap_content"
+        android:layout_height="67dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="647dp"
+        android:layout_marginEnd="297dp"
+        android:layout_marginBottom="16dp"
+        android:text="Post"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="2dp" />
+
+
+    <Button
+        android:id="@+id/btnFeed"
+        android:layout_width="wrap_content"
+        android:layout_height="67dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="131dp"
-        android:layout_marginTop="610dp"
-        android:layout_marginEnd="118dp"
-        android:backgroundTint="#CCCCCC"
-        android:text="Submit"
-        android:textColor="#1F3573" />
+        android:layout_marginTop="647dp"
+        android:layout_marginEnd="148dp"
+        android:layout_marginBottom="16dp"
+        android:text="Go to Feed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="2dp" />
 
     <Button
         android:id="@+id/btnTakePicture"
@@ -49,25 +59,27 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="39dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="43dp"
         android:layout_marginEnd="37dp"
-        android:backgroundTint="#CCCCCC"
         android:text="take picture"
-        android:textColor="#1F3573" />
+        android:textColor="@color/white" />
 
     <EditText
         android:id="@+id/etDescription"
-        android:layout_width="318dp"
-        android:layout_height="64dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="517dp"
-        android:layout_marginEnd="45dp"
-        android:hint="Enter Description" />
+        android:layout_centerInParent="true"
+        android:layout_marginStart="47dp"
+        android:layout_marginTop="480dp"
+        android:layout_marginEnd="46dp"
+        android:backgroundTint="#E1306C"
+        android:hint="Enter Description"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
 
     <ImageView
         android:id="@+id/ivPicture"
@@ -77,9 +89,9 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_centerInParent="true"
-        android:layout_marginStart="67dp"
-        android:layout_marginTop="208dp"
-        android:layout_marginEnd="69dp"
+        android:layout_marginStart="63dp"
+        android:layout_marginTop="127dp"
+        android:layout_marginEnd="73dp"
         tools:srcCompat="@tools:sample/avatars" />
 
 

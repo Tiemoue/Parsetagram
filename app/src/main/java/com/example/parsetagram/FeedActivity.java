@@ -1,7 +1,6 @@
 package com.example.parsetagram;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,7 +9,10 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
@@ -28,6 +30,8 @@ public class FeedActivity extends AppCompatActivity {
     private final int REQUEST_CODE = 20;
     private SwipeRefreshLayout swipeContainer;
     BottomNavigationView bottomNavigationView;
+    Toolbar toolbar;
+
 
     private RecyclerView rvPosts;
 
@@ -37,6 +41,7 @@ public class FeedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_feed);
 
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        toolbar = findViewById(R.id.toolbar);
 
         rvPosts = findViewById(R.id.rvPosts);
 
@@ -70,7 +75,7 @@ public class FeedActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.home_action:
-                        // do something here
+                        rvPosts.smoothScrollToPosition(0);
                         return true;
                     case R.id.camera_action:
                         goToMainActivity();
@@ -83,20 +88,25 @@ public class FeedActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
     private void goToMainActivity() {
-        Intent intent = new Intent(FeedActivity.this, MainActivity.class);
+        Intent intent = new Intent(FeedActivity.this, composeActivity.class);
         startActivity(intent);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
 
     private void queryPosts() {
         // specify what type of data we want to query - Post.class
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         // include data referred by user key
         query.include(Post.KEY_USER);
+        query.include(Post.KEY_LIKED_BY);
         // limit query to latest 20 items
         query.setLimit(20);
         // order posts by creation date (newest first)
