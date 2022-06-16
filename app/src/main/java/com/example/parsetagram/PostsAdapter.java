@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -62,6 +63,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         private TextView tvDescription;
         private TextView tvCreatedAt;
         private TextView tvLikes;
+        private ImageButton feedLikes;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -70,6 +73,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             tvDescription = itemView.findViewById(R.id.tvDescription);
             tvCreatedAt = itemView.findViewById(R.id.tvCreatedAt);
             tvLikes = itemView.findViewById(R.id.tvLikes);
+            feedLikes = itemView.findViewById(R.id.feedLike);
             itemView.setOnClickListener(this);
         }
 
@@ -79,6 +83,12 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             tvDescription.setText(post.getDescription());
             tvUsername.setText(post.getUser().getUsername());
             tvCreatedAt.setText(timeAgo);
+            tvLikes.setText(post.getLikesCount());
+            if (post.isLikedByCurrentUser()){
+                feedLikes.setBackgroundResource(R.drawable.ufi_heart_active);
+            }else{
+                feedLikes.setBackgroundResource(R.drawable.ufi_heart);
+            }
             ParseFile image = post.getImage();
             if (image != null) {
                 Glide.with(context).load(image.getUrl()).into(ivImage);
@@ -86,7 +96,6 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             }else{
                 ivImage.setVisibility(View.GONE);
             }
-
         }
 
         @Override
@@ -98,8 +107,6 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                 intent.putExtra(Post.class.getSimpleName(), posts.get(position));
                 context.startActivity(intent);
             }
-
         }
     }
-
 }
