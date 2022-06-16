@@ -87,9 +87,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                 ivImage.setVisibility(View.GONE);
             }
 
-
         }
-
 
         @Override
         public void onClick(View v) {

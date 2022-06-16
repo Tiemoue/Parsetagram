@@ -125,7 +125,6 @@ public class Post extends ParseObject {
         saveInBackground();
     }}
 
-
     public void like(){
         unlike();
         List<ParseUser> likedby = getLikedBy();

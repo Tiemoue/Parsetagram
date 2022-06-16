@@ -32,10 +32,7 @@ public class FeedActivity extends AppCompatActivity {
     private SwipeRefreshLayout swipeContainer;
     BottomNavigationView bottomNavigationView;
     Toolbar toolbar;
-
-
     private RecyclerView rvPosts;
-
 
     @Override
     protected void onResume() {
@@ -77,7 +74,6 @@ public class FeedActivity extends AppCompatActivity {
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
 
-
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
@@ -97,7 +93,6 @@ public class FeedActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     private void goToComposeActivity() {
@@ -110,7 +105,6 @@ public class FeedActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -149,12 +143,10 @@ public class FeedActivity extends AppCompatActivity {
                     Log.e(TAG, "Issue with getting posts", e);
                     return;
                 }
-
                 // for debugging purposes let's print every post description to logcat
                 for (Post post : posts) {
                     Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser().getUsername());
                 }
-
                 // save received posts to list and notify adapter of new data
                 allPosts.addAll(posts);
                 adapter.notifyDataSetChanged();

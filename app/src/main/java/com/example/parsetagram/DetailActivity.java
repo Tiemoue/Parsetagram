@@ -50,17 +50,24 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         tvUsername = findViewById(R.id.tvDetailUsername);
+
         ivImage = findViewById(R.id.ivDetailImage);
+
       tvDescription = findViewById(R.id.tvDetailDescription);
+
         tvCreatedAt = findViewById(R.id.tvDate);
+
         ibLikes = findViewById(R.id.ibLikes);
+
         ibComment = findViewById(R.id.ibComment);
+
         rvComments = findViewById(R.id.rvComments);
+
         tvLikeCounts = findViewById(R.id.tvlikeCounts);
+
         adapter = new CommentAdaptar();
         rvComments.setLayoutManager(new LinearLayoutManager(this));
         rvComments.setAdapter(adapter);
-
 
         post = getIntent().getParcelableExtra(Post.class.getSimpleName());
         Date createdAt = post.getCreatedAt();
@@ -69,7 +76,6 @@ public class DetailActivity extends AppCompatActivity {
         tvDescription.setText(post.getDescription());
         tvCreatedAt.setText(timeAgo);
 
-
         ParseFile image = post.getImage();
         if(image != null){
             Glide.with(this).load(image.getUrl()).into(ivImage);
@@ -77,7 +83,6 @@ public class DetailActivity extends AppCompatActivity {
         }else{
             ivImage.setVisibility(View.GONE);
         }
-
 
         if(post.isLikedByCurrentUser()){
             ibLikes.setBackgroundResource(R.drawable.ufi_heart_active);
@@ -102,9 +107,6 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
 
-
-
-
         tvLikeCounts.setText(post.getLikesCount());
 
         ibComment.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +117,6 @@ public class DetailActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         reFreshComment();
     }
 
@@ -124,7 +125,6 @@ public class DetailActivity extends AppCompatActivity {
         query.whereEqualTo(Comment.KEY_POST, post);
         query.orderByDescending("createdAt");
         query.include(Comment.KEY_AUTHOR);
-
         query.findInBackground(new FindCallback<Comment>() {
             @Override
             public void done(List<Comment> objects, ParseException e) {
@@ -139,5 +139,4 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
     }
-
 }

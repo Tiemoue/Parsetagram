@@ -23,17 +23,12 @@ public class ComposeComment extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compose_comment);
-
         etBody = findViewById(R.id.etBody);
         btSave = findViewById(R.id.btSave);
-
-
         post = getIntent().getParcelableExtra("post");
 
         Toast.makeText(this, post.getDescription(), Toast.LENGTH_SHORT).show();
         Comment comment = new Comment();
-
-
         btSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,11 +48,7 @@ public class ComposeComment extends AppCompatActivity {
                         }
                     }
                 });
-
             }
         });
-
-
-
     }
 }

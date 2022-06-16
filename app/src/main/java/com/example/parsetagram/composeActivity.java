@@ -31,7 +31,6 @@ import java.util.List;
 public class composeActivity extends AppCompatActivity {
 
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 20;
-
     public static String TAG = ".MainActivity";
 
     EditText etDescription;
@@ -69,7 +68,6 @@ public class composeActivity extends AppCompatActivity {
             }
         });
 
-
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,11 +84,9 @@ public class composeActivity extends AppCompatActivity {
                 else{
                     Toast.makeText(composeActivity.this, "no image found", Toast.LENGTH_SHORT).show();
                     return;
-                }
-                }
+                 }
+            }
         });
-
-
 
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,13 +105,11 @@ public class composeActivity extends AppCompatActivity {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Create a File reference for future access
         photoFile = getPhotoFileUri(photoFileName);
-
         // wrap File object into a content provider
         // required for API >= 24
         // See https://guides.codepath.com/android/Sharing-Content-with-Intents#sharing-files-with-api-24-or-higher
         Uri fileProvider = FileProvider.getUriForFile(composeActivity.this, "com.codepath.fileprovider", photoFile);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
-
         // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
         // So as long as the result is not null, it's safe to use the intent.
         if (intent.resolveActivity(getPackageManager()) != null) {
@@ -146,15 +140,12 @@ public class composeActivity extends AppCompatActivity {
         // Use `getExternalFilesDir` on Context to access package-specific directories.
         // This way, we don't need to request external read/write runtime permissions.
         File mediaStorageDir = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), TAG);
-
         // Create the storage directory if it does not exist
         if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()){
             Log.d(TAG, "failed to create directory");
         }
-
         // Return the file target for the photo based on filename
         File file = new File(mediaStorageDir.getPath() + File.separator + photoFileName);
-
         return file;
     }
 
@@ -199,7 +190,6 @@ public class composeActivity extends AppCompatActivity {
                 }
             }
         });
-
 
     }
 
