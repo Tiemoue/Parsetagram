@@ -28,24 +28,24 @@ import com.parse.SaveCallback;
 import java.io.File;
 import java.util.List;
 
-public class composeActivity extends AppCompatActivity {
+public class ComposeActivity extends AppCompatActivity {
 
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 20;
     public static String TAG = ".MainActivity";
 
-    EditText etDescription;
-    Button btnTakePicture;
-    Button btnSubmit;
-    Button btnLogOut;
-    ImageView ivPicture;
-    Button btnFeed;
+    private EditText etDescription;
+    private Button btnTakePicture;
+    private Button btnSubmit;
+    private Button btnLogOut;
+    private ImageView ivPicture;
+    private Button btnFeed;
     private File photoFile;
     public String photoFileName = "photo.jpg";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_compose);
 
         btnLogOut = findViewById(R.id.btnLogOut);
         etDescription = findViewById(R.id.etDescription);
@@ -73,16 +73,15 @@ public class composeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String description = etDescription.getText().toString();
                 if (description.isEmpty()){
-                    Toast.makeText(composeActivity.this, "Description cannot be empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ComposeActivity.this, "Description cannot be empty", Toast.LENGTH_SHORT).show();
                 return;
                 }
                 ParseUser currentUser = ParseUser.getCurrentUser();
                 if(photoFile != null && ivPicture.getDrawable() != null){
                       savePost(description, currentUser, photoFile);
-
                 }
                 else{
-                    Toast.makeText(composeActivity.this, "no image found", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ComposeActivity.this, "no image found", Toast.LENGTH_SHORT).show();
                     return;
                  }
             }
@@ -97,7 +96,7 @@ public class composeActivity extends AppCompatActivity {
     }
 
     private void goToFeedActivity() {
-        Intent intent = new Intent(composeActivity.this, FeedActivity.class);
+        Intent intent = new Intent(ComposeActivity.this, FeedActivity.class);
         startActivity(intent);
     }
 
@@ -108,7 +107,7 @@ public class composeActivity extends AppCompatActivity {
         // wrap File object into a content provider
         // required for API >= 24
         // See https://guides.codepath.com/android/Sharing-Content-with-Intents#sharing-files-with-api-24-or-higher
-        Uri fileProvider = FileProvider.getUriForFile(composeActivity.this, "com.codepath.fileprovider", photoFile);
+        Uri fileProvider = FileProvider.getUriForFile(ComposeActivity.this, "com.codepath.fileprovider", photoFile);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
         // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
         // So as long as the result is not null, it's safe to use the intent.
@@ -128,7 +127,6 @@ public class composeActivity extends AppCompatActivity {
                 // RESIZE BITMAP, see section below
                 // Load the taken image into a preview
                 ivPicture.setImageBitmap(takenImage);
-
             } else { // Result was a failure
                 Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
             }
@@ -159,12 +157,12 @@ public class composeActivity extends AppCompatActivity {
             public void done(ParseException e) {
                 if(e != null) {
                     Log.e(TAG, "error", e);
-                    Toast.makeText(composeActivity.this, "Error while saving", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ComposeActivity.this, "Error while saving", Toast.LENGTH_SHORT).show();
 
                 }else{
                     etDescription.setText("");
                     ivPicture.setImageResource(0);
-                    Toast.makeText(composeActivity.this, "Sent", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ComposeActivity.this, "Sent", Toast.LENGTH_SHORT).show();
                     queryPost();
                 }
                 goToFeedActivity(); }
@@ -181,22 +179,19 @@ public class composeActivity extends AppCompatActivity {
                 if(e != null){
                     Log.e(TAG, "Issue with getting user", e);
                     return;
-
                 }else{
                     for(Post post: posts){
                         Log.i(TAG, "Post:  " + post.getDescription());
                     }
-
                 }
             }
         });
-
     }
 
     public void logOut(){
         ParseUser.logOut();
         ParseUser currentUser = ParseUser.getCurrentUser();
-        Intent intent = new Intent(composeActivity.this, LoginActivity.class);
+        Intent intent = new Intent(ComposeActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
     }

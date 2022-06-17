@@ -48,18 +48,14 @@ public class FeedActivity extends AppCompatActivity {
 
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
         toolbar = findViewById(R.id.toolbar);
-
         rvPosts = findViewById(R.id.rvPosts);
-
         allPosts = new ArrayList<>();
         adapter = new PostsAdapter(this, allPosts);
-
         rvPosts.setAdapter(adapter);
         // set the layout manager on the recycler view
         rvPosts.setLayoutManager(new LinearLayoutManager(this));
         // query posts from Parstagram
         setSupportActionBar(toolbar);
-
 
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -96,7 +92,7 @@ public class FeedActivity extends AppCompatActivity {
     }
 
     private void goToComposeActivity() {
-        Intent intent = new Intent(FeedActivity.this, composeActivity.class);
+        Intent intent = new Intent(FeedActivity.this, ComposeActivity.class);
         startActivity(intent);
     }
 

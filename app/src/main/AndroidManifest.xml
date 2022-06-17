@@ -26,6 +26,9 @@
         android:theme="@style/Theme.Parsetagram"
         tools:targetApi="31">
         <activity
+            android:name=".SignUpActivity"
+            android:exported="false" />
+        <activity
             android:name=".ComposeComment"
             android:exported="false" />
         <activity
@@ -49,7 +52,7 @@
         </provider>
 
         <activity
-            android:name=".splashScreenActivity"
+            android:name=".SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -57,7 +60,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".composeActivity" />
+        <activity android:name=".ComposeActivity" />
     </application>
 
 </manifest>

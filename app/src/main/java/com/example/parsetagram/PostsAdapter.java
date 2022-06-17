@@ -21,7 +21,6 @@ import java.util.List;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
 
-
     private Context context;
     private List<Post> posts;
 
@@ -67,7 +66,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         private TextView tvLikes;
         private ImageButton feedLikes;
         private  ImageView profile;
-
+        public static  final String KEY_PROFILE_IMAGE = "profileimage";
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -88,12 +87,14 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             tvUsername.setText(post.getUser().getUsername());
             tvCreatedAt.setText(timeAgo);
             tvLikes.setText(post.getLikesCount());
-            ParseFile profilePicture = post.getUser().getParseFile("profileimage");
+            ParseFile profilePicture = post.getUser().getParseFile(KEY_PROFILE_IMAGE);
+
             if (post.isLikedByCurrentUser()){
                 feedLikes.setBackgroundResource(R.drawable.ufi_heart_active);
             }else{
                 feedLikes.setBackgroundResource(R.drawable.ufi_heart);
             }
+
             ParseFile image = post.getImage();
             if (image != null) {
                 Glide.with(context).load(image.getUrl()).into(ivImage);
@@ -104,9 +105,9 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
             if(profilePicture != null){
                 Glide.with(context).load(profilePicture.getUrl()).transform(new RoundedCorners(90)).into(profile);
+            }else{
+                ivImage.setVisibility(View.GONE);
             }
-
-
         }
 
         @Override

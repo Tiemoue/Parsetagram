@@ -38,9 +38,7 @@ public class DetailActivity extends AppCompatActivity {
 
     @Override
     protected void onRestart() {
-
         super.onRestart();
-
         reFreshComment();
     }
 
@@ -93,16 +91,13 @@ public class DetailActivity extends AppCompatActivity {
         ibLikes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<ParseUser> likedby = post.getLikedBy();
                 if(post.isLikedByCurrentUser()){
                   post.unlike();
                     ibLikes.setBackgroundResource(R.drawable.ufi_heart);
-
                 }else{
                    post.like();
                     ibLikes.setBackgroundResource(R.drawable.ufi_heart_active);
                 }
-
                 tvLikeCounts.setText(post.getLikesCount());
             }
         });

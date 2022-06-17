@@ -23,8 +23,6 @@ public class Post extends ParseObject {
     public static  final String KEY_USER = "user";
     public static  final String KEY_LIKED_BY = "liked_by";
 
-
-
     public String getDescription(){
         return getString(KEY_DESCRIPTION);
     }
@@ -33,7 +31,6 @@ public class Post extends ParseObject {
         put(KEY_DESCRIPTION, description);
     }
 
-
     public ParseFile getImage(){
         return getParseFile(KEY_IMAGE);
     }
@@ -41,9 +38,6 @@ public class Post extends ParseObject {
     public void setImage(ParseFile image){
         put(KEY_IMAGE, image);
     }
-
-
-
 
     public ParseUser getUser(){
         return  getParseUser(KEY_USER);
@@ -98,16 +92,13 @@ public class Post extends ParseObject {
             Log.i("Error:", "getRelativeTimeAgo failed", e);
             e.printStackTrace();
         }
-
         return "";
     }
-
 
     public String getLikesCount(){
         int likeCount = getLikedBy().size();
         return likeCount + (likeCount == 1 ? " likes" : " like");
     }
-
 
     public boolean isLikedByCurrentUser(){
         List<ParseUser> likedBy  = getLikedBy();
@@ -135,7 +126,5 @@ public class Post extends ParseObject {
         setLikedBy(likedby);
         saveInBackground();
     }
-
-
 
 }

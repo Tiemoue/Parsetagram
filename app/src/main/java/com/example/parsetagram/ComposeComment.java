@@ -42,7 +42,6 @@ public class ComposeComment extends AppCompatActivity {
                     public void done(ParseException e) {
                         if(e != null){
                             return;
-
                         }else{
                             finish();
                         }

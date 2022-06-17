@@ -8,7 +8,7 @@ import android.os.Handler;
 
 import com.parse.ParseUser;
 
-public class splashScreenActivity extends Activity {
+public class SplashScreenActivity extends Activity {
     Handler handler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,15 +20,14 @@ public class splashScreenActivity extends Activity {
             @Override
             public void run() {
                 if(ParseUser.getCurrentUser() != null){
-                    Intent intent=new Intent(splashScreenActivity.this,FeedActivity.class);
+                    Intent intent=new Intent(SplashScreenActivity.this,FeedActivity.class);
                     startActivity(intent);
                     finish();
                 }else{
-                    Intent intent = new Intent(splashScreenActivity.this , LoginActivity.class);
+                    Intent intent = new Intent(SplashScreenActivity.this , LoginActivity.class);
                     startActivity(intent);
                     finish();
                 }
-
             }
         },3000);
 
