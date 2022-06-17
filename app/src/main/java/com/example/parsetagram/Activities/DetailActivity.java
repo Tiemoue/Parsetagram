@@ -41,7 +41,6 @@ public class DetailActivity extends AppCompatActivity {
     CommentAdaptar adapter;
     Post post;
 
-
     @Override
     protected void onRestart() {
         super.onRestart();

@@ -17,17 +17,19 @@ public class ProfileFragment extends FeedFragment {
         shouldFetchFeedOnResume = false;
          super.onResume();
         adapter.clear();
-        queryPosts();
+        queryPosts(0);
     }
 
+
     @Override
-    protected void queryPosts() {
+    protected void queryPosts(int skip) {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         // include data referred by user key
         query.include(Post.KEY_USER);
         query.whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
         // limit query to latest 20 items
         query.setLimit(20);
+        query.setSkip(skip);
         // order posts by creation date (newest first)
         query.addDescendingOrder("createdAt");
         // start an asynchronous call for posts
@@ -36,7 +38,6 @@ public class ProfileFragment extends FeedFragment {
             public void done(List<Post> posts, ParseException e) {
                 // check for errors
                 if (e != null) {
-                    Log.e(TAG, "Issue with getting posts", e);
                     return;
                 }
                 // save received posts to list and notify adapter of new data

@@ -19,7 +19,6 @@ import com.example.parsetagram.Activities.LoginActivity;
 import com.example.parsetagram.Models.Post;
 import com.example.parsetagram.Adaptars.PostsAdapter;
 import com.example.parsetagram.R;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -30,6 +29,7 @@ import java.util.List;
 
 public class FeedFragment extends Fragment {
 
+    public EndlessRecyclerViewScrollListener scrollListener;
     public PostsAdapter adapter;
     public List<Post> allPosts;
     public static String TAG = ".FeedActivity";
@@ -46,7 +46,7 @@ public class FeedFragment extends Fragment {
         super.onResume();
         if(shouldFetchFeedOnResume) {
             adapter.clear();
-            queryPosts();
+            queryPosts(0);
         }
     }
 
@@ -62,18 +62,29 @@ public class FeedFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
 
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+
         rvPosts = view.findViewById(R.id.rvPosts);
         allPosts = new ArrayList<>();
         adapter = new PostsAdapter( getContext(), allPosts);
         rvPosts.setAdapter(adapter);
         // set the layout manager on the recycler view
-        rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvPosts.setLayoutManager(layoutManager);
+
+        scrollListener = new EndlessRecyclerViewScrollListener(layoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                queryPosts(allPosts.size());
+            }
+        };
+
+        rvPosts.addOnScrollListener(scrollListener);
         // query posts from Parstagram
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 allPosts.clear();
-                queryPosts();
+                queryPosts(0);
             }
         });
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
@@ -82,14 +93,15 @@ public class FeedFragment extends Fragment {
                 android.R.color.holo_red_light);
     }
 
-    protected void queryPosts() {
+    protected void queryPosts(int skip) {
         // specify what type of data we want to query - Post.class
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         // include data referred by user key
         query.include(Post.KEY_USER);
         query.include(Post.KEY_LIKED_BY);
         // limit query to latest 20 items
-        query.setLimit(20);
+        query.setLimit(2);
+        query.setSkip(skip);
         // order posts by creation date (newest first)
         query.addDescendingOrder("createdAt");
         // start an asynchronous call for posts
