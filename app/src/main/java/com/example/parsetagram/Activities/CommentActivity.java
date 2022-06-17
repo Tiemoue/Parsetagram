@@ -29,7 +29,6 @@ public class CommentActivity extends AppCompatActivity {
         btSave = findViewById(R.id.btSave);
         post = getIntent().getParcelableExtra("post");
 
-        Toast.makeText(this, post.getDescription(), Toast.LENGTH_SHORT).show();
         Comment comment = new Comment();
         btSave.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -58,7 +59,7 @@ public class DetailActivity extends AppCompatActivity {
 
         ivDetailProfile = findViewById(R.id.ivDetailprofile);
 
-      tvDescription = findViewById(R.id.tvDetailDescription);
+        tvDescription = findViewById(R.id.tvDetailDescription);
 
         tvCreatedAt = findViewById(R.id.tvDate);
 
@@ -80,7 +81,6 @@ public class DetailActivity extends AppCompatActivity {
         tvUsername.setText(post.getUser().getUsername());
         tvDescription.setText(post.getDescription());
         tvCreatedAt.setText(timeAgo);
-
         ParseFile profileImage = post.getUser().getParseFile("profileimage");
 
         if(profileImage != null){
@@ -119,7 +119,6 @@ public class DetailActivity extends AppCompatActivity {
         });
 
         tvLikeCounts.setText(post.getLikesCount());
-
         ibComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,7 +139,6 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void done(List<Comment> objects, ParseException e) {
                 if(e!= null){
-                    Log.e("error", e.getMessage());
                     return;
                 }else{
                     adapter.clear();

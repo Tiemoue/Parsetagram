@@ -8,4 +8,11 @@
         android:icon="@drawable/ic_baseline_exit_to_app_24"
         android:title="compose"
         app:showAsAction="always" />
+
+
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/instagram_user_outline_24"
+        android:title="compose"
+        app:showAsAction="always" />
 </menu>

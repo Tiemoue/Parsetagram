@@ -18,10 +18,4 @@
         android:text="comment"
         android:id="@+id/btSave"/>
 
-
-
-
-
-
-
 </LinearLayout>

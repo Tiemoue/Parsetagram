@@ -53,7 +53,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void done(ParseUser user, ParseException e) {
                 if(e != null){
-                    Log.e("issue with log", String.valueOf(e));
                     Toast.makeText(LoginActivity.this, "Invalid Password", Toast.LENGTH_SHORT).show();
                 }else{
                     goToMainActivity();
@@ -62,8 +61,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
-
 
     private void goToMainActivity() {
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);

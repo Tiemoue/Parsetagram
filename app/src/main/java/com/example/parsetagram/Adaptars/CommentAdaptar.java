@@ -68,6 +68,7 @@ public class CommentAdaptar extends RecyclerView.Adapter<CommentAdaptar.ViewHold
 
         public void bind(Comment comment) {
             tvBody.setText(comment.getBody());
+            tvAuthor.setText(comment.getAuthor().getUsername());
         }
     }
 }
