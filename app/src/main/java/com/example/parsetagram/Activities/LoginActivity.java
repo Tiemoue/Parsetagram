@@ -1,4 +1,4 @@
-package com.example.parsetagram;
+package com.example.parsetagram.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.parsetagram.R;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -55,21 +56,17 @@ public class LoginActivity extends AppCompatActivity {
                     Log.e("issue with log", String.valueOf(e));
                     Toast.makeText(LoginActivity.this, "Invalid Password", Toast.LENGTH_SHORT).show();
                 }else{
-                    goToFeedActivity();
+                    goToMainActivity();
                     Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
-    private void goToComposeActivity() {
-        Intent intent = new Intent(this, ComposeActivity.class);
-        startActivity(intent);
-        finish();
-    }
 
-    private void goToFeedActivity() {
-        Intent intent = new Intent(LoginActivity.this, FeedActivity.class);
+
+    private void goToMainActivity() {
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
     }
 

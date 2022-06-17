@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#E1306C"
-    tools:context=".SignUpActivity">
+    tools:context=".Activities.SignUpActivity">
 
 
     <ImageView
@@ -53,9 +53,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="54dp"
         android:layout_marginTop="42dp"
-        android:backgroundTint="#833AB4"
+        android:backgroundTint="#50B43A"
         android:text="SignUp"
-        android:textColor="#090909" />
+        android:textColor="#FBF7F7" />
 
 
 

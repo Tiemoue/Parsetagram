@@ -1,4 +1,4 @@
-package com.example.parsetagram;
+package com.example.parsetagram.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,11 +13,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.example.parsetagram.Adaptars.CommentAdaptar;
+import com.example.parsetagram.Models.Comment;
+import com.example.parsetagram.Models.Post;
+import com.example.parsetagram.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseQuery;
-import com.parse.ParseUser;
 
 import java.util.Date;
 import java.util.List;
@@ -32,6 +36,7 @@ public class DetailActivity extends AppCompatActivity {
     private ImageButton ibComment;
     private RecyclerView rvComments;
     private TextView tvLikeCounts;
+    private ImageView ivDetailProfile;
     CommentAdaptar adapter;
     Post post;
 
@@ -50,6 +55,8 @@ public class DetailActivity extends AppCompatActivity {
         tvUsername = findViewById(R.id.tvDetailUsername);
 
         ivImage = findViewById(R.id.ivDetailImage);
+
+        ivDetailProfile = findViewById(R.id.ivDetailprofile);
 
       tvDescription = findViewById(R.id.tvDetailDescription);
 
@@ -73,6 +80,15 @@ public class DetailActivity extends AppCompatActivity {
         tvUsername.setText(post.getUser().getUsername());
         tvDescription.setText(post.getDescription());
         tvCreatedAt.setText(timeAgo);
+
+        ParseFile profileImage = post.getUser().getParseFile("profileimage");
+
+        if(profileImage != null){
+            Glide.with(this).load(profileImage.getUrl()).transform(new RoundedCorners(90)).into(ivDetailProfile);
+            ivDetailProfile.setVisibility(View.VISIBLE);
+        }else{
+            ivDetailProfile.setVisibility(View.GONE);
+        }
 
         ParseFile image = post.getImage();
         if(image != null){
@@ -107,7 +123,7 @@ public class DetailActivity extends AppCompatActivity {
         ibComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DetailActivity.this, ComposeComment.class);
+                Intent intent = new Intent(DetailActivity.this, CommentActivity.class);
                 intent.putExtra("post", post);
                 startActivity(intent);
             }

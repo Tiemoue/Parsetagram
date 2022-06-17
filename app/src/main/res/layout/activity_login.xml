@@ -58,7 +58,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="52dp"
         android:layout_marginTop="531dp"
-        android:backgroundTint="#833AB4"
+        android:backgroundTint="#50B43A"
         android:text="Sign up"
         android:textColor="#FFFFFF" />
 

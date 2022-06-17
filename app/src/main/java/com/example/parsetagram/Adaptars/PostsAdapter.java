@@ -1,9 +1,8 @@
-package com.example.parsetagram;
+package com.example.parsetagram.Adaptars;
 
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
-import android.view.RoundedCorner;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -14,6 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.example.parsetagram.Activities.DetailActivity;
+import com.example.parsetagram.Models.Post;
+import com.example.parsetagram.R;
 import com.parse.ParseFile;
 
 import java.util.Date;
@@ -66,7 +68,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         private TextView tvLikes;
         private ImageButton feedLikes;
         private  ImageView profile;
-        public static  final String KEY_PROFILE_IMAGE = "profileimage";
+        public static final String KEY_PROFILE_IMAGE = "profileimage";
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

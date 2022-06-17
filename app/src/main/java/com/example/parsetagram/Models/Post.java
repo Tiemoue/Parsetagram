@@ -1,9 +1,6 @@
-package com.example.parsetagram;
+package com.example.parsetagram.Models;
 
-import android.os.Build;
 import android.util.Log;
-
-import androidx.annotation.RequiresApi;
 
 import com.parse.ParseClassName;
 import com.parse.ParseFile;
@@ -13,7 +10,6 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.function.Predicate;
 
 @ParseClassName("Post")
 public class Post extends ParseObject {

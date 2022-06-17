@@ -1,4 +1,4 @@
-package com.example.parsetagram;
+package com.example.parsetagram.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.parsetagram.R;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
@@ -43,7 +44,7 @@ public class SignUpActivity extends AppCompatActivity {
                         }
                         else {
                             Toast.makeText(SignUpActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
-                            goToComposeActivity();
+                            goToMainActivity();
                         }
                     }
                 });
@@ -51,8 +52,8 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
-    private void goToComposeActivity() {
-        Intent intent = new Intent(this, ComposeActivity.class);
+    private void goToMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }

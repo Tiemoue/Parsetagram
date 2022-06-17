@@ -1,19 +1,21 @@
-package com.example.parsetagram;
+package com.example.parsetagram.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.parsetagram.Models.Comment;
+import com.example.parsetagram.Models.Post;
+import com.example.parsetagram.R;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
-public class ComposeComment extends AppCompatActivity {
+public class CommentActivity extends AppCompatActivity {
 
     Post post;
     EditText etBody;
@@ -22,7 +24,7 @@ public class ComposeComment extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_compose_comment);
+        setContentView(R.layout.activity_comment);
         etBody = findViewById(R.id.etBody);
         btSave = findViewById(R.id.btSave);
         post = getIntent().getParcelableExtra("post");

@@ -1,21 +1,18 @@
-package com.example.parsetagram;
+package com.example.parsetagram.Adaptars;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.parse.ParseFile;
+import com.example.parsetagram.Models.Comment;
+import com.example.parsetagram.R;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class CommentAdaptar extends RecyclerView.Adapter<CommentAdaptar.ViewHolder>  {
